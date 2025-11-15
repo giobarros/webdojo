@@ -1,0 +1,73 @@
+describe('Gerenciamento de Perfis de Github', ()=> {
+
+    beforeEach(()=> {
+        cy.start()
+        cy.submitLoginForm('papito@webdojo.com', 'katana123')
+        cy.goTo('Tabela', 'Perfis do GitHub')
+    })
+
+    it('Deve poder cadastrar um novo perfil no github',()=> {
+        cy.get('#name').type('Fernando Papito')
+        cy.get('#username').type('papitodev')
+        cy.get('#profile').type('QA')
+        cy.contains('button', 'Adicionar Perfil').click()
+
+        cy.contains('table tbody tr', 'papitodev')
+            .should('be.visible')
+            .as('trProfile')
+           
+        cy.get('@trProfile')   
+            .contains('Fernando Papito')
+            .should('be.visible')
+
+         cy.get('@trProfile') 
+            .contains('QA')
+            .should('be.visible')
+     
+    })
+
+    it('Deve poder remover um perfil do github', ()=> {
+        const profile = {
+            name: 'Fernando Papito',
+            username: 'papito123',
+            desc: 'QA'
+        }
+
+        cy.get('#name').type(profile.name)
+        cy.get('#username').type(profile.username)
+        cy.get('#profile').type(profile.desc)
+        cy.contains('button', 'Adicionar Perfil').click()
+
+        cy.contains('table tbody tr', profile.username)
+            .should('be.visible')
+            .as('trProfile')
+
+        cy.get('@trProfile').find('button', 'Remover perfil').click()
+
+
+        cy.contains('table tbody', profile.username)
+            .should('not.exist')
+    })
+
+    it('Deve validar o link do github', ()=> {
+        const profile = {
+            name: 'Fernando Papito',
+            username: 'papitodev',
+            desc: 'QA'
+        }
+
+        cy.get('#name').type(profile.name)
+        cy.get('#username').type(profile.username)
+        cy.get('#profile').type(profile.desc)
+        cy.contains('button', 'Adicionar Perfil').click()
+
+        cy.contains('table tbody tr', profile.username)
+            .should('be.visible')
+            .as('trProfile')
+
+        cy.get('@trProfile').find('a') //referente ao link de cada linha
+            .should('have.attr', 'href', 'https://github.com/papitodev') //verifica o atributo href que deve ser igual ao link
+            .and('have.attr', 'target', '_blank')
+    })
+
+})

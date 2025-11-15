@@ -1,0 +1,47 @@
+{
+  "personal": {
+    "name": "Fernando Papito",
+    "email": "papito@teste.com.br",
+    "phone": "11 99999-1234",
+    "consultancyType": "Individual",
+    "personType": "cpf",
+    "document": "69872043320",
+    "channels": [
+      "Instagram",
+      "LinkedIn",
+      "Udemy",
+      "YouTube",
+      "Indicação de Amigo"
+    ],
+    "file": "./cypress/fixtures/document.pdf",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "tec": [
+      "Cypress",
+      "JavaScript",
+      "Python",
+      "Selenium",
+      "Postman"
+    ],
+    "terms": true
+ 
+},
+  "company": {
+    "name": "Fernando Papito",
+    "email": "papito@teste.com.br",
+    "phone": "11 99999-1234",
+    "consultancyType": "In Company",
+    "personType": "cnpj",
+    "document": "75751081000160",
+    "channels": [
+      "Instagram",
+      "LinkedIn"
+    ],
+    "file": "./cypress/fixtures/document.pdf",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "tec": [
+      "Cypress",
+      "JavaScript"
+    ],
+    "terms": true
+  }
+}
